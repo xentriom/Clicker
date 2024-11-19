@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E1686ED2CECF57F0045FFE3 /* MenuBarExtraAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 7E1686EC2CECF57F0045FFE3 /* MenuBarExtraAccess */; };
 		7EB3C0102CEC4F8200628831 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7EB3C00F2CEC4F7A00628831 /* .gitignore */; };
 		7EB3C0122CEC4FA000628831 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7EB3C0112CEC4F9800628831 /* README.md */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E1686ED2CECF57F0045FFE3 /* MenuBarExtraAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +76,7 @@
 			);
 			name = Clicker;
 			packageProductDependencies = (
+				7E1686EC2CECF57F0045FFE3 /* MenuBarExtraAccess */,
 			);
 			productName = Clicker;
 			productReference = 7EB3BFF22CEC2AF900628831 /* Clicker.app */;
@@ -103,6 +106,9 @@
 			);
 			mainGroup = 7EB3BFE92CEC2AF900628831;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7E1686EB2CECF57F0045FFE3 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7EB3BFF32CEC2AF900628831 /* Products */;
 			projectDirPath = "";
@@ -326,6 +332,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7E1686EB2CECF57F0045FFE3 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orchetect/MenuBarExtraAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7E1686EC2CECF57F0045FFE3 /* MenuBarExtraAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E1686EB2CECF57F0045FFE3 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */;
+			productName = MenuBarExtraAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7EB3BFEA2CEC2AF900628831 /* Project object */;
 }
