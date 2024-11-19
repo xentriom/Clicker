@@ -45,7 +45,7 @@ struct ContentView: View {
                     
                     Divider()
                 }
-                .transition(.move(edge: .top).combined(with: .opacity))
+                .transition(Animations.cascadingFadeAndSlide)
             }
             
             
@@ -53,19 +53,23 @@ struct ContentView: View {
             HStack(alignment: .center, spacing: 10) {
                 Text(isRunning ? "Clicking..." : "Stopped.")
                 
-                Button(action: { isRunning.toggle() }) {
+                Button(action: {
+                    withAnimation(Animations.bounce) {
+                        isRunning.toggle()
+                    }
+                }) {
                     Text(isRunning ? "Stop" : "Start")
                         .cornerRadius(5)
+                        .animation(.easeInOut(duration: 0.3), value: isRunning)
                 }
             }
         }
         .padding()
         .frame(width: 320)
-        .animation(.easeInOut, value: showSettings)
         .toolbar {
             ToolbarItem(placement: .automatic) {
                 Button(action: {
-                    withAnimation(.easeInOut(duration: 0.4)) {
+                    withAnimation(Animations.elasticOvershoot(duration: 0.5)) {
                         showSettings.toggle()
                         rotationAngle += 100
                     }
@@ -73,7 +77,7 @@ struct ContentView: View {
                 {
                     Label("Settings", systemImage: showSettings ? "gearshape.fill" : "gearshape")
                         .rotationEffect(.degrees(rotationAngle))
-                        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: rotationAngle)
+                        .animation(Animations.smoothEase, value: rotationAngle)
                 }
             }
         }
