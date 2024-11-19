@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     // Clicker
     @Binding var isRunning: Bool
-    @Binding var lauchAtLogin: Bool
+    @Binding var launchAtLogin: Bool
     @Binding var showInDock: Bool
     @Binding var showMenuBarExtra: Bool
     
@@ -36,7 +36,7 @@ struct ContentView: View {
             if showSettings {
                 Group {
                     SettingsView(
-                        launchAtLogin: $lauchAtLogin,
+                        launchAtLogin: $launchAtLogin,
                         showOnDock: $showInDock,
                         showMenuBarExtra: $showMenuBarExtra,
                         hotkey: $hotkey,

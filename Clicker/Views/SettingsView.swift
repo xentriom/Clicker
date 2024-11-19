@@ -17,8 +17,16 @@ struct SettingsView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Toggle("Launch Clicker at Login", isOn: $launchAtLogin)
+                .onChange(of: launchAtLogin) { oldValue, newValue in
+                    AppUtilities.setLaunchAtLogin(enabled: newValue)
+                }
+            
             Toggle("Show Clicker in Menu Bar", isOn: $showMenuBarExtra)
+            
             Toggle("Show Clicker in Dock", isOn: $showOnDock)
+                .onChange(of: showOnDock) { oldValue, newValue in
+                    AppUtilities.setDockIconVisibility(hidden: oldValue)
+                }
             
             HStack {
                 Text("Start/Stop hotkey:")

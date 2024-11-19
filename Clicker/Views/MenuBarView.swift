@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuBarView: View {
     @Binding var isRunning: Bool
-    @Binding var lauchAtLogin: Bool
+    @Binding var launchAtLogin: Bool
     @Binding var showInDock: Bool
     @Binding var showMenuBarExtra: Bool
     
@@ -21,11 +21,29 @@ struct MenuBarView: View {
             
             Divider()
             
-            Button(action: openPreferences) {
-                Text("Launch at Login")
+            Button(action: toggleLaunchAtLogin) {
+                HStack {
+                    if launchAtLogin {
+                        Image(systemName: "checkmark")
+                    }
+                    Text("Launch at Login")
+                }
             }
-            Button(action: openPreferences) {
-                Text("Hide Dock Icon")
+            
+            Button(action: toggleMenuBarExtra) {
+                HStack {
+                    Image(systemName: "checkmark")
+                    Text("Hide Menu Bar Icon")
+                }
+            }
+            
+            Button(action: toggleDockIcon) {
+                HStack {
+                    if showInDock {
+                        Image(systemName: "checkmark")
+                    }
+                    Text("Clicker Dock Icon")
+                }
             }
 
             Divider()
@@ -44,6 +62,20 @@ struct MenuBarView: View {
             }
         }
         .padding()
+    }
+    
+    private func toggleLaunchAtLogin() {
+        launchAtLogin.toggle()
+        AppUtilities.setLaunchAtLogin(enabled: launchAtLogin)
+    }
+    
+    private func toggleMenuBarExtra() {
+        showMenuBarExtra.toggle()
+    }
+    
+    private func toggleDockIcon() {
+        showInDock.toggle()
+        AppUtilities.setDockIconVisibility(hidden: !showInDock)
     }
     
     private func openAbout() {
