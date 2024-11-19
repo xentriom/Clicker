@@ -20,8 +20,9 @@ struct ContentView: View {
     @State private var clickCount = AppConstants.defaultClickCount
     
     // Settings
-    @State private var showSettings = true
-    @State private var hotkey = AppConstants.defaultHotkey
+    @AppStorage("isSettingsOpen") private var showSettings = true
+    @AppStorage("hotkey") private var hotkey = AppConstants.defaultHotkey
+    
     @State private var isHotkeyEditing = false
     @State private var rotationAngle = 0.0
 
