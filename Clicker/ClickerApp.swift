@@ -13,6 +13,7 @@ struct ClickerApp: App {
         WindowGroup {
             ContentView()
         }
+        .windowResizability(.contentSize)
     }
 }
 

@@ -25,6 +25,7 @@ struct ContentView: View {
     @State private var showInMenuBar = true
     @State private var hotkey = "⌘S"
     @State private var isHotkeyEditing = false
+    @State private var rotationAngle = 0.0
 
     var body: some View {
         VStack {
@@ -36,6 +37,7 @@ struct ContentView: View {
                         Text(button)
                     }
                 }
+                
                 Text("mouse button")
             }
 
@@ -44,7 +46,7 @@ struct ContentView: View {
                 Text("Click")
                 HStack(spacing: 0) {
                     TextField("Clicks", value: $clickCount, formatter: NumberFormatter())
-                        .frame(width: 50)
+                        .frame(width: 45)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .onChange(of: clickCount) { oldValue, newValue in
                             // Ensure range
@@ -92,7 +94,6 @@ struct ContentView: View {
                         }
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Divider()
             }
@@ -105,17 +106,21 @@ struct ContentView: View {
                 Text(isRunning ? "Running" : "Stopped")
                     .foregroundColor(isRunning ? .green : .red)
             }
-            .frame(maxWidth: .infinity, alignment: .center)
         }
         .padding()
-        .frame(width: 300)
+        .frame(width: 320)
         .animation(.easeInOut, value: showSettings)
         .toolbar {
             ToolbarItem(placement: .automatic) {
                 Button(action: {
-                    showSettings.toggle()
+                    withAnimation {
+                        showSettings.toggle()
+                        rotationAngle += 100
+                    }
                 }) {
                     Label("Settings", systemImage: showSettings ? "gearshape.fill" : "gearshape")
+                        .rotationEffect(.degrees(rotationAngle))
+                        .animation(.easeInOut, value: rotationAngle)
                 }
             }
         }
