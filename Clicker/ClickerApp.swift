@@ -8,10 +8,14 @@
 import SwiftUI
 
 @main
-struct ClickerApp: App {
+struct ClickerApp: App {    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
     }
+}
+
+#Preview {
+    ContentView()
 }
