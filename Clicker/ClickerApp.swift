@@ -9,16 +9,16 @@ import SwiftUI
 
 @main
 struct ClickerApp: App {
-    @State private var isRunning = false
-    @State private var lauchAtLogin = false
-    @State private var showInDock = true
-    @State private var showMenuBarExtra = true
+    @AppStorage("isRunning") private var isRunning = false
+    @AppStorage("launchAtLogin") private var launchAtLogin = false
+    @AppStorage("showInDock") private var showInDock = true
+    @AppStorage("showMenuBarExtra") private var showMenuBarExtra = true
     
     var body: some Scene {
         WindowGroup {
             ContentView(
                 isRunning: $isRunning,
-                lauchAtLogin: $lauchAtLogin,
+                launchAtLogin: $launchAtLogin,
                 showInDock: $showInDock,
                 showMenuBarExtra: $showMenuBarExtra
             )
@@ -28,7 +28,7 @@ struct ClickerApp: App {
         MenuBarExtra("Clicker", systemImage: isRunning ? "bolt.circle.fill" : "bolt.circle", isInserted: $showMenuBarExtra) {
             MenuBarView(
                 isRunning: $isRunning,
-                lauchAtLogin: $lauchAtLogin,
+                launchAtLogin: $launchAtLogin,
                 showInDock: $showInDock,
                 showMenuBarExtra: $showMenuBarExtra
             )
