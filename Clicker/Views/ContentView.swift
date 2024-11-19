@@ -9,18 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     // Clicker
-    @State private var isRunning = false
-    @State private var clickCount = AppConstants.defaultClickCount
+    @Binding var isRunning: Bool
+    @Binding var lauchAtLogin: Bool
+    @Binding var showInDock: Bool
+    @Binding var showMenuBarExtra: Bool
     
     // Mouse
     @State private var selectedMouseButton = AppConstants.defaultMouseButton
     @State private var selectedTimeUnit = AppConstants.defaultTimeUnit
+    @State private var clickCount = AppConstants.defaultClickCount
     
     // Settings
     @State private var showSettings = true
-    @State private var lauchAtLogin = false
-    @State private var showOnDock = false
-    @State private var showInMenuBar = true
     @State private var hotkey = AppConstants.defaultHotkey
     @State private var isHotkeyEditing = false
     @State private var rotationAngle = 0.0
@@ -37,8 +37,8 @@ struct ContentView: View {
                 Group {
                     SettingsView(
                         launchAtLogin: $lauchAtLogin,
-                        showOnDock: $showOnDock,
-                        showInMenuBar: $showInMenuBar,
+                        showOnDock: $showInDock,
+                        showMenuBarExtra: $showMenuBarExtra,
                         hotkey: $hotkey,
                         isHotkeyEditing: $isHotkeyEditing
                     )
@@ -84,6 +84,6 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}

@@ -10,20 +10,15 @@ import SwiftUI
 struct SettingsView: View {
     @Binding var launchAtLogin: Bool
     @Binding var showOnDock: Bool
-    @Binding var showInMenuBar: Bool
+    @Binding var showMenuBarExtra: Bool
     @Binding var hotkey: String
     @Binding var isHotkeyEditing: Bool
 
     var body: some View {
         VStack(alignment: .leading) {
-            Toggle("Launch at Login", isOn: $launchAtLogin)
-                .toggleStyle(CheckboxToggleStyle())
-            
-            Toggle("Show on Dock", isOn: $showOnDock)
-                .toggleStyle(CheckboxToggleStyle())
-            
-            Toggle("Show on Menu Bar", isOn: $showInMenuBar)
-                .toggleStyle(CheckboxToggleStyle())
+            Toggle("Launch Clicker at Login", isOn: $launchAtLogin)
+            Toggle("Show Clicker in Menu Bar", isOn: $showMenuBarExtra)
+            Toggle("Show Clicker in Dock", isOn: $showOnDock)
             
             HStack {
                 Text("Start/Stop hotkey:")
