@@ -15,9 +15,9 @@ struct ContentView: View {
     @Binding var showMenuBarExtra: Bool
     
     // Mouse
-    @State private var selectedMouseButton = AppConstants.defaultMouseButton
-    @State private var selectedTimeUnit = AppConstants.defaultTimeUnit
-    @State private var clickCount = AppConstants.defaultClickCount
+    @AppStorage("selectedMouseButton") private var selectedMouseButton = AppConstants.defaultMouseButton
+    @AppStorage("selectedTimeUnit") private var selectedTimeUnit = AppConstants.defaultTimeUnit
+    @AppStorage("clickCount") private var clickCount = AppConstants.defaultClickCount
     
     // Settings
     @AppStorage("isSettingsOpen") private var showSettings = true
