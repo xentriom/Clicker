@@ -30,15 +30,20 @@ struct SettingsView: View {
             
             HStack {
                 Text("Start/Stop shortcut:")
+
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(isHotkeyEditing ? Color.blue : Color.gray, lineWidth: 1)
                         .frame(height: 20)
-                    Text(shortcut)
-                        .foregroundColor(isHotkeyEditing ? .blue : .primary)
-                        .onTapGesture {
-                            isHotkeyEditing.toggle()
-                        }
+                    
+                    if !isHotkeyEditing {
+                        Text(shortcut)
+                            .onTapGesture {
+                                isHotkeyEditing.toggle()
+                            }
+                    } else {
+                        ShortcutInputView(shortcut: $shortcut, isEditing: $isHotkeyEditing)
+                    }
                 }
             }
         }

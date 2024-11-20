@@ -13,6 +13,7 @@ struct ClickerApp: App {
     @AppStorage("launchAtLogin") private var launchAtLogin = AppConstants.defaultLaunchAtLogin
     @AppStorage("showInDock") private var showInDock = AppConstants.defaultShowInDock
     @AppStorage("showMenuBarExtra") private var showMenuBarExtra = AppConstants.defaultShowMenuBarExtra
+    
     @StateObject private var autoClickerManager = AutoClickerManager()
     
     var body: some Scene {
