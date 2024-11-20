@@ -21,7 +21,7 @@ final class AutoClickerManager: ObservableObject {
     
     private let autoClicker = AutoClickerUtility()
     
-    // AppStorage-backed properties for configuration
+    // Configuration from AppStorage
     @AppStorage("selectedMouseButton") private var selectedMouseButton = AppConstants.defaultMouseButton
     @AppStorage("selectedTimeUnit") private var selectedTimeUnit = AppConstants.defaultTimeUnit
     @AppStorage("clicksPerUnit") private var clicksPerUnit = AppConstants.defaultClickCount
