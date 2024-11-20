@@ -17,7 +17,7 @@ struct ContentView: View {
     // Mouse
     @AppStorage("selectedMouseButton") private var selectedMouseButton = AppConstants.defaultMouseButton
     @AppStorage("selectedTimeUnit") private var selectedTimeUnit = AppConstants.defaultTimeUnit
-    @AppStorage("clickCount") private var clickCount = AppConstants.defaultClickCount
+    @AppStorage("clicksPerUnit") private var clicksPerUnit = AppConstants.defaultClickCount
     
     // Settings
     @AppStorage("isSettingsOpen") private var showSettings = true
@@ -29,7 +29,11 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 15) {
             // Interval Control
-            IntervalControl(clickCount: $clickCount, selectedMouseButton: $selectedMouseButton, selectedTimeUnit: $selectedTimeUnit)
+            IntervalView(
+                clicksPerUnit: $clicksPerUnit,
+                selectedMouseButton: $selectedMouseButton,
+                selectedTimeUnit: $selectedTimeUnit
+            )
             
             Divider()
             
@@ -69,22 +73,20 @@ struct ContentView: View {
         .frame(width: 320)
         .toolbar {
             ToolbarItem(placement: .automatic) {
-                Button(action: {
-                    withAnimation(Animations.elasticOvershoot(duration: 0.5)) {
-                        showSettings.toggle()
-                        rotationAngle += 100
-                    }
-                })
-                {
+                Button(action: toggleSettings) {
                     Label("Settings", systemImage: showSettings ? "gearshape.fill" : "gearshape")
                         .rotationEffect(.degrees(rotationAngle))
-                        .animation(Animations.smoothEase, value: rotationAngle)
                 }
+                .accessibilityLabel("Toggle Settings")
+                .accessibilityHint("Show or hide the settings panel.")
             }
         }
     }
+    
+    private func toggleSettings() {
+        withAnimation(Animations.elasticOvershoot(duration: 0.5)) {
+            showSettings.toggle()
+            rotationAngle += 100
+        }
+    }
 }
-
-//#Preview {
-//    ContentView()
-//}

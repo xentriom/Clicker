@@ -9,15 +9,15 @@ import SwiftUI
 
 @main
 struct ClickerApp: App {
-    @AppStorage("isRunning") private var isRunning = false
-    @AppStorage("launchAtLogin") private var launchAtLogin = false
-    @AppStorage("showInDock") private var showInDock = true
-    @AppStorage("showMenuBarExtra") private var showMenuBarExtra = true
+    @AppStorage("launchAtLogin") private var launchAtLogin = AppConstants.defaultLaunchAtLogin
+    @AppStorage("showInDock") private var showInDock = AppConstants.defaultShowInDock
+    @AppStorage("showMenuBarExtra") private var showMenuBarExtra = AppConstants.defaultShowMenuBarExtra
+    @StateObject private var autoClickerManager = AutoClickerManager()
     
     var body: some Scene {
         WindowGroup {
             ContentView(
-                isRunning: $isRunning,
+                isRunning: $autoClickerManager.isRunning,
                 launchAtLogin: $launchAtLogin,
                 showInDock: $showInDock,
                 showMenuBarExtra: $showMenuBarExtra
@@ -25,9 +25,9 @@ struct ClickerApp: App {
         }
         .windowResizability(.contentSize)
 
-        MenuBarExtra("Clicker", systemImage: isRunning ? "bolt.circle.fill" : "bolt.circle", isInserted: $showMenuBarExtra) {
+        MenuBarExtra("Clicker", systemImage: autoClickerManager.isRunning ? "magicmouse.fill" : "magicmouse", isInserted: $showMenuBarExtra) {
             MenuBarView(
-                isRunning: $isRunning,
+                isRunning: $autoClickerManager.isRunning,
                 launchAtLogin: $launchAtLogin,
                 showInDock: $showInDock,
                 showMenuBarExtra: $showMenuBarExtra
@@ -35,4 +35,13 @@ struct ClickerApp: App {
         }
         .menuBarExtraStyle(.menu)
     }
+}
+
+#Preview {
+    ContentView(
+        isRunning: .constant(true),
+        launchAtLogin: .constant(true),
+        showInDock: .constant(true),
+        showMenuBarExtra: .constant(true)
+    )
 }

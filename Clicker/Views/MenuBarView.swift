@@ -15,33 +15,32 @@ struct MenuBarView: View {
     
     var body: some View {
         VStack {
-            Button(action: openPreferences) {
-                Text("Clicker Enabled")
+            Button(action: toggleAutoClicking) {
+                HStack {
+                    Image(systemName: isRunning ? "stop.circle.fill" : "play.circle.fill")
+                    Text(isRunning ? "Stop Clicker" : "Start Clicker")
+                }
             }
             
             Divider()
             
             Button(action: toggleLaunchAtLogin) {
                 HStack {
-                    if launchAtLogin {
-                        Image(systemName: "checkmark")
-                    }
+                    Image(systemName: launchAtLogin ? "checkmark.circle.fill" : "xmark.circle.fill")
                     Text("Launch at Login")
                 }
             }
             
             Button(action: toggleMenuBarExtra) {
                 HStack {
-                    Image(systemName: "checkmark")
+                    Image(systemName: "checkmark.circle.fill")
                     Text("Hide Menu Bar Icon")
                 }
             }
             
             Button(action: toggleDockIcon) {
                 HStack {
-                    if showInDock {
-                        Image(systemName: "checkmark")
-                    }
+                    Image(systemName: showInDock ? "checkmark.circle.fill" : "xmark.circle.fill")
                     Text("Clicker Dock Icon")
                 }
             }
@@ -49,19 +48,26 @@ struct MenuBarView: View {
             Divider()
             
             Button(action: openAbout) {
+                Image(systemName: "info.circle.fill")
                 Text("About Clicker")
             }
             Button(action: openPreferences) {
+                Image(systemName: "gearshape.circle.fill")
                 Text("Customize")
             }
             
             Divider()
             
             Button(action: quitApp) {
+                Image(systemName: "power.circle.fill")
                 Text("Quit Clicker")
             }
         }
         .padding()
+    }
+    
+    private func toggleAutoClicking() {
+        isRunning.toggle()
     }
     
     private func toggleLaunchAtLogin() {

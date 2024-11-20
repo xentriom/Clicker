@@ -8,8 +8,12 @@
 import Foundation
 
 struct AppConstants {
+    static let defaultLaunchAtLogin = false
+    static let defaultShowInDock = true
+    static let defaultShowMenuBarExtra = true
+    
     static let defaultClickCount = 10
-    static let clickCountRange = 1...900
+    static let clickCountRange = 1...500
     
     static let mouseButtons = ["Left", "Middle", "Right"]
     static let defaultMouseButton = "Left"
