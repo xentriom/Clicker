@@ -33,6 +33,9 @@ struct ContentView: View {
                 selectedMouseButton: $selectedMouseButton,
                 selectedTimeUnit: $selectedTimeUnit
             )
+            .onChange(of: clicksPerUnit) { oldValue, newValue in
+                clicksPerUnit = min(max(AppConstants.clickCountRange.lowerBound, newValue), AppConstants.clickCountRange.upperBound)
+            }
             
             Divider()
             
