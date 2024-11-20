@@ -27,6 +27,7 @@ struct ShortcutInputView: View {
             .frame(height: 20)
     }
     
+    /// Monitor for key down events
     private func startListeningForKeyEvents() {
         eventMonitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { event in
             self.handleKeyEvent(event)
@@ -34,6 +35,7 @@ struct ShortcutInputView: View {
         }
     }
     
+    /// Stop the monitor
     private func stopListeningForKeyEvents() {
         if let monitor = eventMonitor {
             NSEvent.removeMonitor(monitor)
@@ -41,6 +43,7 @@ struct ShortcutInputView: View {
         }
     }
     
+    /// Handles the key events, parses and validates
     private func handleKeyEvent(_ event: NSEvent) {
         var keys = [String]()
         

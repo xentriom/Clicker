@@ -42,7 +42,10 @@ struct SettingsView: View {
                                 isHotkeyEditing.toggle()
                             }
                     } else {
-                        ShortcutInputView(shortcut: $shortcut, isEditing: $isHotkeyEditing)
+                        ShortcutInputView(
+                            shortcut: $shortcut,
+                            isEditing: $isHotkeyEditing
+                        )
                     }
                 }
             }

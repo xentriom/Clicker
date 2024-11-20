@@ -16,59 +16,62 @@ struct MenuBarView: View {
     
     var body: some View {
         VStack {
-            Button(action: toggleAutoClicking) {
-                HStack {
-                    Image(systemName: isRunning ? "stop.circle.fill" : "play.circle.fill")
-                    Text(isRunning ? "Stop Clicker" : "Start Clicker [\(shortcut)]")
-                }
+            Button(isRunning ? "Stop Clicker" : "Start Clicker") {
+                isRunning.toggle()
             }
+            .keyboardShortcut(decodeShortcut(shortcut))
             
             Divider()
             
-            Button(action: toggleLaunchAtLogin) {
-                HStack {
-                    Image(systemName: launchAtLogin ? "checkmark.circle.fill" : "xmark.circle.fill")
-                    Text("Launch at Login")
-                }
+            Toggle(isOn: $launchAtLogin) {
+                Text("Launch at Login")
             }
             
-            Button(action: toggleMenuBarExtra) {
-                HStack {
-                    Image(systemName: "checkmark.circle.fill")
-                    Text("Menu Bar Icon")
-                }
+            Toggle(isOn: $showMenuBarExtra) {
+                Text("Show in Menu Bar")
             }
             
-            Button(action: toggleDockIcon) {
-                HStack {
-                    Image(systemName: showInDock ? "checkmark.circle.fill" : "xmark.circle.fill")
-                    Text("Clicker Dock Icon")
-                }
+            Toggle(isOn: $showInDock) {
+                Text("Show in Dock")
             }
 
             Divider()
             
-            Button(action: openAbout) {
-                Image(systemName: "info.circle.fill")
-                Text("About Clicker")
+            Button("About Clicker") {
+                
             }
-            Button(action: openPreferences) {
-                Image(systemName: "gearshape.circle.fill")
-                Text("Customize")
+            Button("Open Clicker") {
+                
             }
             
             Divider()
             
             Button(action: quitApp) {
-                Image(systemName: "power.circle.fill")
                 Text("Quit Clicker")
             }
+            .keyboardShortcut("q", modifiers: [.command])
         }
         .padding()
     }
     
-    private func toggleAutoClicking() {
-        isRunning.toggle()
+    /// Decode string shortcut into keyboardShortcut
+    func decodeShortcut(_ shortcut: String) -> KeyboardShortcut? {
+        var modifiers: EventModifiers = []
+        var key: Character?
+        
+        for char in shortcut {
+            switch char {
+            case "⌘": modifiers.insert(.command)
+            case "⌥": modifiers.insert(.option)
+            case "⇧": modifiers.insert(.shift)
+            case "⌃": modifiers.insert(.control)
+            default:
+                key = char
+            }
+        }
+        
+        guard let key = key else { return nil }
+        return KeyboardShortcut(KeyEquivalent(key), modifiers: modifiers)
     }
     
     private func toggleLaunchAtLogin() {
@@ -83,14 +86,6 @@ struct MenuBarView: View {
     private func toggleDockIcon() {
         showInDock.toggle()
         AppUtilities.setDockIconVisibility(hidden: !showInDock)
-    }
-    
-    private func openAbout() {
-        print("About clicked.")
-    }
-    
-    private func openPreferences() {
-        print("Preferences clicked.")
     }
     
     private func quitApp() {
