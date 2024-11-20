@@ -11,7 +11,7 @@ struct SettingsView: View {
     @Binding var launchAtLogin: Bool
     @Binding var showOnDock: Bool
     @Binding var showMenuBarExtra: Bool
-    @Binding var hotkey: String
+    @Binding var shortcut: String
     @Binding var isHotkeyEditing: Bool
 
     var body: some View {
@@ -34,7 +34,7 @@ struct SettingsView: View {
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(isHotkeyEditing ? Color.blue : Color.gray, lineWidth: 1)
                         .frame(height: 20)
-                    Text(hotkey)
+                    Text(shortcut)
                         .foregroundColor(isHotkeyEditing ? .blue : .primary)
                         .onTapGesture {
                             isHotkeyEditing.toggle()

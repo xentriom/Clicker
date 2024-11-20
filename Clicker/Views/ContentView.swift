@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     // Clicker
     @Binding var isRunning: Bool
-    @Binding var hotkey: String
+    @Binding var shortcut: String
     @Binding var launchAtLogin: Bool
     @Binding var showInDock: Bool
     @Binding var showMenuBarExtra: Bool
@@ -46,7 +46,7 @@ struct ContentView: View {
                         launchAtLogin: $launchAtLogin,
                         showOnDock: $showInDock,
                         showMenuBarExtra: $showMenuBarExtra,
-                        hotkey: $hotkey,
+                        shortcut: $shortcut,
                         isHotkeyEditing: $isHotkeyEditing
                     )
                     

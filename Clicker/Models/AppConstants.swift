@@ -13,7 +13,7 @@ struct AppConstants {
     static let defaultShowMenuBarExtra = true
     
     static let defaultClickCount = 10
-    static let clickCountRange = 1...500
+    static let clickCountRange = 1...1000
     
     static let mouseButtons = ["Left", "Middle", "Right"]
     static let defaultMouseButton = "Left"
@@ -21,5 +21,5 @@ struct AppConstants {
     static let timeUnits = ["Second", "Minute"]
     static let defaultTimeUnit = "Second"
     
-    static let defaultHotkey = "⌘S"
+    static let defaultShortcut = "⌘S"
 }

@@ -31,7 +31,7 @@ struct IntervalView: View {
                 
                 HStack(spacing: 0) {
                     TextField("Clicks", value: $clicksPerUnit, formatter: NumberFormatter())
-                        .frame(width: 45)
+                        .frame(width: 50)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     Stepper("", value: $clicksPerUnit, in: AppConstants.clickCountRange)
                 }
