@@ -9,15 +9,18 @@ import SwiftUI
 
 @main
 struct ClickerApp: App {
+    @AppStorage("hotkey") private var hotkey = AppConstants.defaultHotkey
     @AppStorage("launchAtLogin") private var launchAtLogin = AppConstants.defaultLaunchAtLogin
     @AppStorage("showInDock") private var showInDock = AppConstants.defaultShowInDock
     @AppStorage("showMenuBarExtra") private var showMenuBarExtra = AppConstants.defaultShowMenuBarExtra
+    
     @StateObject private var autoClickerManager = AutoClickerManager()
     
     var body: some Scene {
         WindowGroup {
             ContentView(
                 isRunning: $autoClickerManager.isRunning,
+                hotkey: $hotkey,
                 launchAtLogin: $launchAtLogin,
                 showInDock: $showInDock,
                 showMenuBarExtra: $showMenuBarExtra
@@ -28,6 +31,7 @@ struct ClickerApp: App {
         MenuBarExtra("Clicker", systemImage: autoClickerManager.isRunning ? "magicmouse.fill" : "magicmouse", isInserted: $showMenuBarExtra) {
             MenuBarView(
                 isRunning: $autoClickerManager.isRunning,
+                hotkey: $hotkey,
                 launchAtLogin: $launchAtLogin,
                 showInDock: $showInDock,
                 showMenuBarExtra: $showMenuBarExtra
@@ -35,13 +39,4 @@ struct ClickerApp: App {
         }
         .menuBarExtraStyle(.menu)
     }
-}
-
-#Preview {
-    ContentView(
-        isRunning: .constant(true),
-        launchAtLogin: .constant(true),
-        showInDock: .constant(true),
-        showMenuBarExtra: .constant(true)
-    )
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     // Clicker
     @Binding var isRunning: Bool
+    @Binding var hotkey: String
     @Binding var launchAtLogin: Bool
     @Binding var showInDock: Bool
     @Binding var showMenuBarExtra: Bool
@@ -21,7 +22,6 @@ struct ContentView: View {
     
     // Settings
     @AppStorage("isSettingsOpen") private var showSettings = true
-    @AppStorage("hotkey") private var hotkey = AppConstants.defaultHotkey
     
     @State private var isHotkeyEditing = false
     @State private var rotationAngle = 0.0

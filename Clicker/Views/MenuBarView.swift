@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MenuBarView: View {
     @Binding var isRunning: Bool
+    @Binding var hotkey: String
     @Binding var launchAtLogin: Bool
     @Binding var showInDock: Bool
     @Binding var showMenuBarExtra: Bool
@@ -18,7 +19,7 @@ struct MenuBarView: View {
             Button(action: toggleAutoClicking) {
                 HStack {
                     Image(systemName: isRunning ? "stop.circle.fill" : "play.circle.fill")
-                    Text(isRunning ? "Stop Clicker" : "Start Clicker")
+                    Text(isRunning ? "Stop Clicker" : "Start Clicker [\(hotkey)]")
                 }
             }
             
@@ -34,7 +35,7 @@ struct MenuBarView: View {
             Button(action: toggleMenuBarExtra) {
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
-                    Text("Hide Menu Bar Icon")
+                    Text("Menu Bar Icon")
                 }
             }
             
