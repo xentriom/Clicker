@@ -29,7 +29,7 @@ struct SettingsView: View {
                 }
             
             HStack {
-                Text("Start/Stop hotkey:")
+                Text("Start/Stop shortcut:")
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(isHotkeyEditing ? Color.blue : Color.gray, lineWidth: 1)

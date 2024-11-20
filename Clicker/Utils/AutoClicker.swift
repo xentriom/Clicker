@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import Foundation
-import Cocoa
 import Combine
 
 class AutoClickerUtility {

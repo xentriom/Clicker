@@ -22,7 +22,6 @@ struct ContentView: View {
     
     // Settings
     @AppStorage("isSettingsOpen") private var showSettings = true
-    
     @State private var isHotkeyEditing = false
     @State private var rotationAngle = 0.0
 
@@ -57,6 +56,8 @@ struct ContentView: View {
             // Start/Stop Control
             HStack(alignment: .center, spacing: 10) {
                 Text(isRunning ? "Clicking..." : "Stopped.")
+                
+                Spacer()
                 
                 Button(action: {
                     withAnimation(Animations.bounce) {
