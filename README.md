@@ -5,5 +5,4 @@
 
 *Discover Clicker - an autocliker built natively for MacOS using Swift.*
 
-Downloadable once shortcuts are working.<br>
 Requires macOS Sonoma (14.6.0) or newer.
