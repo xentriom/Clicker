@@ -15,6 +15,7 @@ struct ClickerApp: App {
     @AppStorage("showMenuBarExtra") private var showMenuBarExtra = AppConstants.defaultShowMenuBarExtra
     
     @StateObject private var autoClickerManager = AutoClickerManager()
+    @State private var shortcutListener: ShortcutListener?
     
     var body: some Scene {
         WindowGroup {
@@ -25,6 +26,9 @@ struct ClickerApp: App {
                 showInDock: $showInDock,
                 showMenuBarExtra: $showMenuBarExtra
             )
+            .onAppear {
+                setupListener()
+            }
         }
         .windowResizability(.contentSize)
 
@@ -38,5 +42,12 @@ struct ClickerApp: App {
             )
         }
         .menuBarExtraStyle(.menu)
+    }
+    
+    private func setupListener() {
+        shortcutListener = ShortcutListener {
+            autoClickerManager.isRunning.toggle()
+        }
+        shortcutListener?.setupListener(for: shortcut)
     }
 }
