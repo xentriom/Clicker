@@ -37,10 +37,11 @@ struct MenuBarView: View {
 
             Divider()
             
-            Button("About Clicker") {
+            Button("Open Clicker") {
                 
             }
-            Button("Open Clicker") {
+            
+            Button("About Clicker") {
                 
             }
             
@@ -72,20 +73,6 @@ struct MenuBarView: View {
         
         guard let key = key else { return nil }
         return KeyboardShortcut(KeyEquivalent(key), modifiers: modifiers)
-    }
-    
-    private func toggleLaunchAtLogin() {
-        launchAtLogin.toggle()
-        AppUtilities.setLaunchAtLogin(enabled: launchAtLogin)
-    }
-    
-    private func toggleMenuBarExtra() {
-        showMenuBarExtra.toggle()
-    }
-    
-    private func toggleDockIcon() {
-        showInDock.toggle()
-        AppUtilities.setDockIconVisibility(hidden: !showInDock)
     }
     
     private func quitApp() {
