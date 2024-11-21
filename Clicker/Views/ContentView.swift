@@ -26,54 +26,63 @@ struct ContentView: View {
     @State private var rotationAngle = 0.0
 
     var body: some View {
-        VStack(spacing: 15) {
-            // Interval Control
-            IntervalView(
-                clicksPerUnit: $clicksPerUnit,
-                selectedMouseButton: $selectedMouseButton,
-                selectedTimeUnit: $selectedTimeUnit
-            )
-            .onChange(of: clicksPerUnit) { oldValue, newValue in
-                clicksPerUnit = min(max(AppConstants.clickCountRange.lowerBound, newValue), AppConstants.clickCountRange.upperBound)
-            }
-            
-            Divider()
-            
-            // Settings Section
-            if showSettings {
-                Group {
-                    SettingsView(
-                        launchAtLogin: $launchAtLogin,
-                        showOnDock: $showInDock,
-                        showMenuBarExtra: $showMenuBarExtra,
-                        shortcut: $shortcut,
-                        isHotkeyEditing: $isHotkeyEditing
-                    )
-                    
-                    Divider()
-                }
-                .transition(Animations.cascadingFadeAndSlide)
-            }
-            
-            
-            // Start/Stop Control
-            HStack(alignment: .center, spacing: 10) {
-                Text(isRunning ? "Clicking..." : "Stopped.")
-                
-                Spacer()
-                
-                Button(action: {
-                    withAnimation(Animations.bounce) {
-                        isRunning.toggle()
+        ZStack {
+            Color.clear
+                .contentShape(Rectangle())
+                .edgesIgnoringSafeArea(.all)
+                .onTapGesture {
+                    DispatchQueue.main.async {
+                        NSApp.keyWindow?.makeFirstResponder(nil)
                     }
-                }) {
-                    Text(isRunning ? "Stop" : "Start")
-                        .cornerRadius(5)
-                        .animation(.easeInOut(duration: 0.3), value: isRunning)
+                }
+            
+            VStack(spacing: 15) {
+                // Interval Control
+                IntervalView(
+                    clicksPerUnit: $clicksPerUnit,
+                    selectedMouseButton: $selectedMouseButton,
+                    selectedTimeUnit: $selectedTimeUnit
+                )
+                .onChange(of: clicksPerUnit) { oldValue, newValue in
+                    clicksPerUnit = min(max(AppConstants.clickCountRange.lowerBound, newValue), AppConstants.clickCountRange.upperBound)
+                }
+                
+                Divider()
+                
+                // Settings Section
+                if showSettings {
+                    Group {
+                        SettingsView(
+                            launchAtLogin: $launchAtLogin,
+                            showOnDock: $showInDock,
+                            showMenuBarExtra: $showMenuBarExtra,
+                            shortcut: $shortcut,
+                            isHotkeyEditing: $isHotkeyEditing
+                        )
+                        
+                        Divider()
+                    }
+                    .transition(Animations.cascadingFadeAndSlide)
+                }
+                
+                
+                // Start/Stop Control
+                HStack(alignment: .center, spacing: 10) {
+                    Text(isRunning ? "Clicking..." : "Stopped.")
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        isRunning.toggle()
+                    }) {
+                        Text(isRunning ? "Stop" : "Start")
+                            .cornerRadius(5)
+                            .animation(.easeInOut(duration: 0.3), value: isRunning)
+                    }
                 }
             }
+            .padding()
         }
-        .padding()
         .frame(width: 320)
         .toolbar {
             ToolbarItem(placement: .automatic) {
