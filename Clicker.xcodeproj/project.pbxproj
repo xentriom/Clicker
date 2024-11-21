@@ -23,6 +23,11 @@
 			path = Clicker;
 			sourceTree = "<group>";
 		};
+		7EDB11552CEEB3A4004C4CC3 /* Assets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +48,7 @@
 				7EB3BFF32CEC2AF900628831 /* Products */,
 				7EB3C00F2CEC4F7A00628831 /* .gitignore */,
 				7EB3C0112CEC4F9800628831 /* README.md */,
+				7EDB11552CEEB3A4004C4CC3 /* Assets */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +77,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				7EB3BFF42CEC2AF900628831 /* Clicker */,
+				7EDB11552CEEB3A4004C4CC3 /* Assets */,
 			);
 			name = Clicker;
 			packageProductDependencies = (
