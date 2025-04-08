@@ -13,7 +13,7 @@ struct AppConstants {
     static let defaultShowMenuBarExtra = true
     
     static let defaultClickCount = 10
-    static let clickCountRange = 1...1000
+    static let clickCountRange = 1...100
     
     static let mouseButtons = ["Left", "Middle", "Right"]
     static let defaultMouseButton = "Left"
