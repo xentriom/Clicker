@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7EB3C0102CEC4F8200628831 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7EB3C00F2CEC4F7A00628831 /* .gitignore */; };
 		7EB3C0122CEC4FA000628831 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7EB3C0112CEC4F9800628831 /* README.md */; };
+		C8495E692DC1B6E2008B388A /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = C8495E682DC1B6E2008B388A /* KeyboardShortcuts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8495E692DC1B6E2008B388A /* KeyboardShortcuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +83,7 @@
 			);
 			name = Clicker;
 			packageProductDependencies = (
+				C8495E682DC1B6E2008B388A /* KeyboardShortcuts */,
 			);
 			productName = Clicker;
 			productReference = 7EB3BFF22CEC2AF900628831 /* Clicker.app */;
@@ -94,7 +97,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1610;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					7EB3BFF12CEC2AF900628831 = {
 						CreatedOnToolsVersion = 16.1;
@@ -111,6 +114,7 @@
 			mainGroup = 7EB3BFE92CEC2AF900628831;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				C8495E672DC1B6E2008B388A /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7EB3BFF32CEC2AF900628831 /* Products */;
@@ -179,6 +183,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -242,6 +247,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -272,6 +278,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Clicker/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -299,6 +306,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Clicker/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -339,6 +347,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C8495E672DC1B6E2008B388A /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C8495E682DC1B6E2008B388A /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8495E672DC1B6E2008B388A /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7EB3BFEA2CEC2AF900628831 /* Project object */;
 }

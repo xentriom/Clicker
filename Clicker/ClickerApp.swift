@@ -2,52 +2,36 @@
 //  ClickerApp.swift
 //  Clicker
 //
-//  Created by Jason Chen on 11/18/24.
+//  Created by Xentriom on 4/29/25.
 //
 
 import SwiftUI
+import KeyboardShortcuts
 
 @main
 struct ClickerApp: App {
-    @AppStorage("hotkey") private var shortcut = AppConstants.defaultShortcut
-    @AppStorage("launchAtLogin") private var launchAtLogin = AppConstants.defaultLaunchAtLogin
-    @AppStorage("showInDock") private var showInDock = AppConstants.defaultShowInDock
-    @AppStorage("showMenuBarExtra") private var showMenuBarExtra = AppConstants.defaultShowMenuBarExtra
+    @StateObject private var clickerState = ClickerState()
+    @AppStorage("showMenuBarExtra") private var showMenuBarExtra: Bool = true
     
-    @StateObject private var autoClickerManager = AutoClickerManager()
-    @State private var shortcutListener: ShortcutListener?
-    
-    var body: some Scene {
-        WindowGroup {
-            ContentView(
-                isRunning: $autoClickerManager.isRunning,
-                shortcut: $shortcut,
-                launchAtLogin: $launchAtLogin,
-                showInDock: $showInDock,
-                showMenuBarExtra: $showMenuBarExtra
-            )
-            .onAppear {
-                setupListener()
-            }
+    private func initShortcuts() {
+        KeyboardShortcuts.onKeyDown(for: .toggleClicking) { [self] in
+            clickerState.toggleClicking()
         }
-        .windowResizability(.contentSize)
-
-        MenuBarExtra("Clicker", systemImage: autoClickerManager.isRunning ? "magicmouse.fill" : "magicmouse", isInserted: $showMenuBarExtra) {
-            MenuBarView(
-                isRunning: $autoClickerManager.isRunning,
-                shortcut: $shortcut,
-                launchAtLogin: $launchAtLogin,
-                showInDock: $showInDock,
-                showMenuBarExtra: $showMenuBarExtra
-            )
-        }
-        .menuBarExtraStyle(.menu)
     }
-    
-    private func setupListener() {
-        shortcutListener = ShortcutListener {
-            autoClickerManager.isRunning.toggle()
-        }
-        shortcutListener?.setupListener(for: shortcut)
+
+    var body: some Scene {
+        // App
+        WindowGroup {
+            ContentView().environmentObject(clickerState).onAppear(perform: initShortcuts)
+        }.windowResizability(.contentSize)
+        
+        // Menu Bar
+        MenuBarExtra(
+            "Clicker",
+            systemImage: clickerState.isClicking ? "magicmouse.fill" : "magicmouse",
+            isInserted: $showMenuBarExtra
+        ) {
+            MenuBarView().environmentObject(clickerState)
+        }.menuBarExtraStyle(.menu)
     }
 }
