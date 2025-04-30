@@ -87,7 +87,9 @@ struct MenuBarView: View {
             }
             
             Button("About Clicker") {
-                //https://github.com/xentriom/Clicker
+                if let url = URL(string: "https://github.com/xentriom/Clicker") {
+                    NSWorkspace.shared.open(url)
+                }
             }
             
             Divider()

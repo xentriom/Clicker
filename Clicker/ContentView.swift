@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 import KeyboardShortcuts
 
 struct ContentView: View {
@@ -52,23 +53,17 @@ struct ContentView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Toggle("Launch Clicker at Login", isOn: $clickerState.toLaunchAtLogin)
                         .onChange(of: clickerState.toLaunchAtLogin) { _, _ in
-                            DispatchQueue.main.async {
-                                clickerState.toggleLaunchAtLogin()
-                            }
+                            clickerState.toggleLaunchAtLogin()
                         }
                     
                     Toggle("Show Clicker in Menu Bar", isOn: $clickerState.showMenuBarExtra)
                         .onChange(of: clickerState.showMenuBarExtra) { _, _ in
-                            DispatchQueue.main.async {
-                                clickerState.toggleShowMenuBarExtra()
-                            }
+                            clickerState.toggleShowMenuBarExtra()
                         }
                     
                     Toggle("Show Clicker in Dock", isOn: $clickerState.showDockIcon)
                         .onChange(of: clickerState.showDockIcon) { _, _ in
-                            DispatchQueue.main.async {
-                                clickerState.toggleShowDockIcon()
-                            }
+                            clickerState.toggleShowDockIcon()
                         }
                     
                     Form {
