@@ -5,66 +5,60 @@
 //  Created by Xentriom on 4/29/25.
 //
 
-import SwiftUI
-import Cocoa
+import AppKit
 import ServiceManagement
+import SwiftUI
 
 class ClickerState: ObservableObject {
-    @Published var isClicking: Bool = false
-    
-    @AppStorage("selectedMouseButton") var selectedMouseButton: String = "Left"
-    @AppStorage("selectedClickInterval") var selectedClickInterval: String = "second"
-    @AppStorage("selectedClickRate") var selectedClickRate: Int = 20
-    
-    @AppStorage("showExtraSettings") var showExtraSettings: Bool = false
-    @AppStorage("toLaunchAtLogin") var toLaunchAtLogin: Bool = false
-    @AppStorage("showMenuBarExtra") var showMenuBarExtra: Bool = true
-    @AppStorage("showDockIcon") var showDockIcon: Bool = true
-    
-    @MainActor
-    func toggleClicking() {
-        isClicking.toggle()
-        
-        if isClicking {
-            ClickerManager.startClicking(
-                selectedMouseButton: selectedMouseButton,
-                selectedClickInterval: selectedClickInterval,
-                selectedClickRate: selectedClickRate
-            )
-        } else {
-            ClickerManager.stopClicking()
+  static let shared = ClickerState()
+
+  @Published var isClicking = false
+
+  @AppStorage("selectedMouseButton") var selectedMouseButton = "Left"
+  @AppStorage("intervalHours") var intervalHours = 0
+  @AppStorage("intervalMinutes") var intervalMinutes = 0
+  @AppStorage("intervalSeconds") var intervalSeconds = 0
+  @AppStorage("intervalMilliseconds") var intervalMilliseconds = 100
+  @AppStorage("repeatMode") var repeatMode = "infinite"
+  @AppStorage("repeatCount") var repeatCount = 10
+  @AppStorage("toLaunchAtLogin") var toLaunchAtLogin = false
+
+  var clickIntervalSeconds: TimeInterval {
+    TimeInterval(intervalHours) * 3600
+      + TimeInterval(intervalMinutes) * 60
+      + TimeInterval(intervalSeconds)
+      + TimeInterval(intervalMilliseconds) / 1000
+  }
+
+  @MainActor
+  func toggleClicking() {
+    isClicking.toggle()
+
+    if isClicking {
+      let count: Int? = repeatMode == "limited" ? max(1, repeatCount) : nil
+      ClickerManager.startClicking(
+        selectedMouseButton: selectedMouseButton,
+        intervalSeconds: max(
+          ClickerManager.minClickInterval,
+          clickIntervalSeconds
+        ),
+        repeatCount: count
+      ) { [weak self] in
+        Task { @MainActor in
+          self?.isClicking = false
         }
+      }
+    } else {
+      ClickerManager.stopClicking()
     }
-    
-    @MainActor
-    func toggleExtraSettings() {
-        showExtraSettings.toggle()
+  }
+
+  @MainActor
+  func applyLaunchAtLogin() {
+    if toLaunchAtLogin {
+      try? SMAppService.mainApp.register()
+    } else {
+      try? SMAppService.mainApp.unregister()
     }
-    
-    @MainActor
-    func toggleLaunchAtLogin() {
-        toLaunchAtLogin.toggle()
-        
-        if toLaunchAtLogin {
-            try? SMAppService.mainApp.register()
-        } else {
-            try? SMAppService.mainApp.unregister()
-        }
-    }
-    
-    @MainActor
-    func toggleShowMenuBarExtra() {
-        showMenuBarExtra.toggle()
-    }
-    
-    @MainActor
-    func toggleShowDockIcon() {
-        showDockIcon.toggle()
-        
-        if showDockIcon {
-            NSApp.setActivationPolicy(.regular)
-        } else {
-            NSApp.setActivationPolicy(.accessory)
-        }
-    }
+  }
 }
