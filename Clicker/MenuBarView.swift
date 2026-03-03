@@ -7,10 +7,32 @@
 
 import AppKit
 import KeyboardShortcuts
+import Sparkle
 import SwiftUI
+
+final class CheckForUpdatesViewModel: ObservableObject {
+  @Published var canCheckForUpdates = false
+  private let updater: SPUUpdater
+
+  init(updater: SPUUpdater) {
+    self.updater = updater
+    updater.publisher(for: \.canCheckForUpdates)
+      .assign(to: &$canCheckForUpdates)
+  }
+
+  func checkForUpdates() {
+    updater.checkForUpdates()
+  }
+}
 
 struct MenuBarView: View {
   @EnvironmentObject var clickerState: ClickerState
+  @ObservedObject private var checkForUpdatesViewModel: CheckForUpdatesViewModel
+
+  init(updater: SPUUpdater) {
+    _checkForUpdatesViewModel = ObservedObject(wrappedValue: CheckForUpdatesViewModel(updater: updater))
+  }
+
   private var appVersion: String {
     let version =
       Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
@@ -128,6 +150,12 @@ struct MenuBarView: View {
       .disabled(clickerState.isClicking)
 
       Divider()
+
+      Button("Check for Updates…") {
+        checkForUpdatesViewModel.checkForUpdates()
+      }
+      .disabled(!checkForUpdatesViewModel.canCheckForUpdates)
+      .buttonStyle(.plain)
 
       Button("Quit Clicker") {
         NSApplication.shared.terminate(nil)
