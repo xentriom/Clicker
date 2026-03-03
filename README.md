@@ -6,3 +6,29 @@
 *Discover Clicker - an autocliker built natively for MacOS using Swift.*
 
 Requires macOS Sonoma (14.6.0) or newer.
+
+## Features
+
+- **Menu bar app** - Runs from your menu bar; no dock clutter
+- **Mouse button** - Left, middle, or right click
+- **Click interval** - Set hours, minutes, seconds, and milliseconds (up to 100 CPS)
+- **Repeat mode** - Click until stopped or a fixed number of times
+- **Keyboard shortcut** - Customizable Start/Stop shortcut
+- **Launch at login** - Optional startup with your Mac
+
+## Installation
+
+Download the latest `.dmg` from the [GitHub releases](https://github.com/xentriom/Clicker/releases).
+
+## Usage
+
+1. Click the Clicker icon in the menu bar
+2. Choose the mouse button (Left, Middle, or Right)
+3. Set the click interval (default: 100ms)
+4. Choose repeat mode (until stopped or limited count)
+5. Click **Start** or use your keyboard shortcut
+6. Click **Stop** or use the shortcut again to stop
+
+## License
+
+Licensed under the [GNU Affero General Public License v3.0](LICENSE).
