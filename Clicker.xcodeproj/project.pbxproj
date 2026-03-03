@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7EB3C0102CEC4F8200628831 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7EB3C00F2CEC4F7A00628831 /* .gitignore */; };
 		7EB3C0122CEC4FA000628831 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7EB3C0112CEC4F9800628831 /* README.md */; };
-		96E177932F565B3B0081EAC1 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 96E177922F565B3B0081EAC1 /* Sparkle */; };
 		C8495E692DC1B6E2008B388A /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = C8495E682DC1B6E2008B388A /* KeyboardShortcuts */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +37,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8495E692DC1B6E2008B388A /* KeyboardShortcuts in Frameworks */,
-				96E177932F565B3B0081EAC1 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +84,6 @@
 			name = Clicker;
 			packageProductDependencies = (
 				C8495E682DC1B6E2008B388A /* KeyboardShortcuts */,
-				96E177922F565B3B0081EAC1 /* Sparkle */,
 			);
 			productName = Clicker;
 			productReference = 7EB3BFF22CEC2AF900628831 /* Clicker.app */;
@@ -118,7 +115,6 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				C8495E672DC1B6E2008B388A /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
-				96E177912F565B3B0081EAC1 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7EB3BFF32CEC2AF900628831 /* Products */;
@@ -358,14 +354,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		96E177912F565B3B0081EAC1 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sparkle-project/Sparkle";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.9.0;
-			};
-		};
 		C8495E672DC1B6E2008B388A /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
@@ -377,11 +365,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		96E177922F565B3B0081EAC1 /* Sparkle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 96E177912F565B3B0081EAC1 /* XCRemoteSwiftPackageReference "Sparkle" */;
-			productName = Sparkle;
-		};
 		C8495E682DC1B6E2008B388A /* KeyboardShortcuts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C8495E672DC1B6E2008B388A /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
