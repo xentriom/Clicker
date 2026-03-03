@@ -20,6 +20,8 @@ Requires macOS Sonoma (14.6.0) or newer.
 
 Download the latest `.dmg` from the [GitHub releases](https://github.com/xentriom/Clicker/releases).
 
+**Note:** Since Clicker is not code-signed, macOS may block it at first launch. If that happens, go to **Settings → Privacy & Security** and click **Open Anyway** (or **Allow Anyway**) next to the blocked app to run it.
+
 ## Usage
 
 1. Click the Clicker icon in the menu bar
